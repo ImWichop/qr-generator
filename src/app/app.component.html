@@ -1,0 +1,36 @@
+<main class="max-w-screen-lg m-auto pt-7 px-3 sm:px-0">
+  <div class="flex justify-center">
+    <h1 class="text-6xl font-bold text-white">Generate your QR code easily</h1>
+  </div>
+  <div class="flex justify-center mt-8">
+    <label for="input-text-label" class="sr-only">Text</label>
+    <input
+      type="text"
+      [formControl]="textControl"
+      id="input-text-label"
+      class="block w-80 rounded-md text-lg py-1.5 px-7 transition-all ease-in duration-200 outline-none border-2 border-gray-500 focus:border-blue-500"
+      placeholder="https://imwichop.dev"
+    />
+  </div>
+  <div class="flex justify-center mt-5 qrcodeImage">
+    <qrcode
+      [qrdata]="textControl.value ?? 'https://imwichop.dev'"
+      [allowEmptyString]="true"
+      [ariaLabel]="'QR Code image with the following content...'"
+      [cssClass]="'center'"
+      [elementType]="'img'"
+      [errorCorrectionLevel]="'M'"
+      [margin]="3"
+      [scale]="1"
+      [title]="'A custom title attribute'"
+      [width]="300"
+      (qrCodeURL)="onChangeURL($event)"
+    ></qrcode>
+  </div>
+  <div class="flex justify-center mt-5">
+    <a [href]="qrCodeDownloadLink" download="qrcode" class="flex align-middle gap-1 text-lg text-bold text-white bg-blue-500 px-3 py-2 rounded-md transition-all ease-in duration-200 hover:bg-blue-600">
+      Download
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0h24v24H0z" stroke="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5 5-5M12 4v12"/></svg>
+    </a>
+  </div>
+</main>
